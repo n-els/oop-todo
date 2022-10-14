@@ -6,6 +6,6 @@ export class TodoItem {
 
   save(array) {
     array.push(this);
-    console.log(`${this._todoText} wurde zum Array hinzugefügt`);
+    console.log(`${this._todoText} <- successfully added to the Array!`);
   }
 }
