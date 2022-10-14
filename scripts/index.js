@@ -1,6 +1,19 @@
 const todoContainer = document.querySelector('#todo-container');
 const todoInput = document.querySelector('#todo-input');
-const todoList = [];
+
+// TodoList Klasse:
+class TodoList {
+  constructor() {
+    this._list = [];
+  }
+  renderList() {
+    this._list.forEach(element => {
+      const p = document.createElement('p');
+      p.innerText = element._todoText;
+      todoContainer.appendChild(p);
+    });
+  }
+}
 
 // TodoItem Klasse:
 class TodoItem {
@@ -8,29 +21,20 @@ class TodoItem {
     this._todoText = todoText;
     this._isDone = isDone;
   }
+
+  save(array) {
+    array.push(this);
+    console.log(`${this._todoText} gespeichert`);
+  }
 }
+
+const todoList = new TodoList();
 
 todoInput.addEventListener('change', event => {
   const todoName = event.target.value;
   const todo = new TodoItem(todoName);
-  todoList.push(todo);
+  todo.save(todoList._list);
   todoContainer.innerHTML = '';
   todoInput.value = '';
-  renderList(todoList);
+  todoList.renderList();
 });
-
-// const todo1 = new TodoItem('text');
-// const todo2 = new TodoItem('text 2', false);
-// const todo3 = new TodoItem('text3', true);
-
-// todoList.push(todo1);
-// todoList.push(todo2);
-// todoList.push(todo3);
-
-const renderList = list => {
-  list.forEach(element => {
-    const p = document.createElement('p');
-    p.innerText = element._todoText;
-    todoContainer.appendChild(p);
-  });
-};
