@@ -6,6 +6,9 @@ class TodoList {
   constructor() {
     this._list = [];
   }
+  get list() {
+    return this._list;
+  }
   renderList() {
     this._list.forEach(element => {
       const p = document.createElement('p');
@@ -24,16 +27,19 @@ class TodoItem {
 
   save(array) {
     array.push(this);
-    console.log(`${this._todoText} gespeichert`);
+    console.log(`${this._todoText} wurde zum Array hinzugefügt`);
   }
 }
 
+// Create an Instance of TodoList
 const todoList = new TodoList();
+
+// Event Listener for Inputfield
 
 todoInput.addEventListener('change', event => {
   const todoName = event.target.value;
   const todo = new TodoItem(todoName);
-  todo.save(todoList._list);
+  todo.save(todoList.list);
   todoContainer.innerHTML = '';
   todoInput.value = '';
   todoList.renderList();
