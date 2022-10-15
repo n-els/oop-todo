@@ -7,9 +7,12 @@ export class TodoList {
   }
   renderList(parentContainer) {
     this._list.forEach(element => {
-      const p = document.createElement('p');
-      p.innerText = element._todoText;
-      parentContainer.appendChild(p);
+      const li = document.createElement('li');
+      const deleteButton = document.createElement('button');
+      deleteButton.innerText = 'X';
+      li.innerText = element._todoText;
+      li.appendChild(deleteButton);
+      parentContainer.appendChild(li);
     });
   }
 }
