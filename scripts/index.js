@@ -14,6 +14,7 @@ const todoList = new TodoList();
 todoInput.addEventListener('change', event => {
   const todoName = event.target.value;
   const todo = new TodoItem(todoName);
+  todo.id = todoList.list.length;
   todo.save(todoList.list);
   todoContainer.innerHTML = '';
   todoInput.value = '';
